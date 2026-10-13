@@ -35,12 +35,12 @@
 
     <section class="lg:col-span-7 flex flex-col space-y-4">
       
-      <!-- Pendaftaran Murid -->
+      <!-- Skrin Pendaftaran Murid -->
       <div id="screenDaftar" class="bg-slate-800/90 border border-slate-700 rounded-2xl p-6 md:p-8 flex flex-col justify-center my-auto shadow-2xl">
         <div class="text-center mb-6">
           <div class="inline-block p-3 bg-emerald-500/10 border border-emerald-500/20 rounded-2xl text-3xl mb-3">🧭</div>
-          <h2 class="text-2xl font-bold text-white">Lembaga Pentaksiran Karangan</h2>
-          <p class="text-slate-400 text-sm mt-1">Sila masukkan maklumat anda sebelum memulakan cabaran.</p>
+          <h2 class="text-2xl font-bold text-white">Pentaksiran Karangan Bahasa Melayu</h2>
+          <p class="text-slate-400 text-sm mt-1">Sila masukkan nama dan kelas sebelum memulakan tugasan.</p>
         </div>
 
         <form id="formMula" onsubmit="mulaPengembaraan(event)" class="space-y-4 max-w-md mx-auto w-full">
@@ -53,13 +53,13 @@
             <input type="text" id="inputKelas" required placeholder="cth: 6 Bestari" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-emerald-500 text-sm">
           </div>
           <button type="submit" class="w-full bg-emerald-600 hover:bg-emerald-500 text-white font-bold py-3.5 px-6 rounded-xl transition shadow-lg flex items-center justify-center space-x-2">
-            <span>Mulakan Pengembaraan</span>
+            <span>Mula Menjawab</span>
             <span>🚀</span>
           </button>
         </form>
       </div>
 
-      <!-- Skrin Permainan -->
+      <!-- Skrin Permainan: Babak & Pilihan -->
       <div id="screenPermainan" class="hidden flex-1 flex flex-col space-y-4">
         <div class="bg-slate-800/60 border border-slate-700/80 rounded-xl p-4 flex items-center justify-between">
           <div class="flex items-center space-x-3">
@@ -79,18 +79,18 @@
 
         <div class="text-xs font-semibold text-slate-400 flex items-center gap-1.5 px-1">
           <span>🎯</span>
-          <span>Pilih ayat yang paling sesuai untuk dimuatkan ke dalam karangan anda:</span>
+          <span>Pilih perenggan yang paling sesuai untuk dimuatkan ke dalam karangan anda:</span>
         </div>
 
         <div id="kotakPilihan" class="space-y-3 flex-1"></div>
       </div>
 
-      <!-- Skrin Penamat -->
+      <!-- Skrin Penamat & Butang Hantar PDF -->
       <div id="screenPenamat" class="hidden bg-slate-800/90 border border-slate-700 rounded-2xl p-6 md:p-8 space-y-6 shadow-2xl">
         <div class="text-center">
           <span class="text-4xl">🏆</span>
-          <h2 class="text-2xl font-bold text-white mt-2">Ekspedisi Selesai!</h2>
-          <p class="text-slate-400 text-sm">Berikut adalah pencapaian bagi teks karangan yang telah anda bina.</p>
+          <h2 class="text-2xl font-bold text-white mt-2">Karangan Selesai Dibina!</h2>
+          <p class="text-slate-400 text-sm">Berikut adalah keputusan markah bagi pilihan perenggan anda.</p>
         </div>
 
         <div class="grid grid-cols-2 gap-4 max-w-sm mx-auto">
@@ -106,45 +106,39 @@
           </div>
         </div>
 
-        <div class="bg-slate-900/80 border border-slate-700 rounded-xl p-4 space-y-3">
-          <h4 class="text-sm font-bold text-slate-200 flex items-center gap-2">
-            <span>📝</span> Ulasan Guru Setiap Bahagian:
-          </h4>
-          <div id="senaraiUlasan" class="space-y-2.5 text-xs text-slate-300"></div>
-        </div>
-
         <div class="border-t border-slate-700/80 pt-5 space-y-3">
           <div id="kotakStatusHantar" class="hidden p-3.5 rounded-xl text-xs text-center font-semibold"></div>
 
-          <button id="btnHantarDrive" onclick="hantarDataKeDrive()" class="w-full bg-emerald-600 hover:bg-emerald-500 text-white font-bold py-3.5 px-6 rounded-xl transition shadow-lg flex items-center justify-center space-x-2">
-            <span>📄 Jana & Hantar Fail PDF ke Google Drive Guru</span>
+          <!-- BUTANG UTAMA HANTAR PDF -->
+          <button id="btnHantarPDF" onclick="hantarPDFKeDrive()" class="w-full bg-emerald-600 hover:bg-emerald-500 text-white font-bold py-3.5 px-6 rounded-xl transition shadow-lg flex items-center justify-center space-x-2">
+            <span>📄 Hantar Jawapan & Markah (PDF) ke Drive Guru</span>
           </button>
           
           <div class="flex gap-3">
             <button onclick="salinKarangan()" class="flex-1 bg-slate-700 hover:bg-slate-600 text-slate-200 font-semibold py-2.5 px-4 rounded-xl text-xs transition">
-              📋 Salin Teks
+              📋 Salin Teks Karangan
             </button>
             <button onclick="lokasiMulaSemula()" class="flex-1 bg-slate-800 hover:bg-slate-700 text-slate-300 font-semibold py-2.5 px-4 rounded-xl text-xs transition border border-slate-700">
-              🔄 Main Semula
+              🔄 Uji Semula
             </button>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Kolum Kanan -->
+    <!-- Kolum Kanan: Kertas Draf Masa Nyata -->
     <section class="lg:col-span-5 flex flex-col bg-amber-50 rounded-2xl text-slate-800 p-5 md:p-6 shadow-xl border border-amber-200 min-h-[500px]">
       <div class="border-b border-amber-200 pb-3 mb-4 flex items-center justify-between">
         <div>
           <span class="text-[10px] uppercase font-bold tracking-widest text-amber-800/80">Kertas Jawapan Murid</span>
-          <h3 class="text-base font-bold text-amber-950 font-serif-doc">Draf Karangan Lengkap</h3>
+          <h3 class="text-base font-bold text-amber-950 font-serif-doc">Draf Karangan Penuh</h3>
         </div>
         <span class="text-xs bg-amber-200/60 text-amber-900 px-2.5 py-1 rounded-full font-mono-code font-bold" id="kiraanPatah">0 patah perkataan</span>
       </div>
 
       <div id="kertasDraf" class="flex-1 font-serif-doc text-sm leading-relaxed space-y-4 custom-scroll overflow-y-auto pr-2 text-slate-900">
         <p class="text-amber-800/60 italic text-center py-20 text-xs font-sans">
-          Pilihan ayat anda akan disusun secara automatik menjadi karangan penuh di sini...
+          Pilihan ayat murid akan tersusun membentuk karangan penuh di sini...
         </p>
       </div>
     </section>
@@ -162,88 +156,76 @@
       {
         bahagian: "Pendahuluan",
         situasi: "Ketibaan di Tapak Perkhemahan",
-        huraian: "Bas sekolah baru tiba di Hutan Lipur Lentang pada awal pagi yang tenang.",
+        huraian: "Bas sekolah tiba di Hutan Lipur Lentang pada awal pagi yang tenang.",
         pilihan: [
           {
             teks: "Pada pagi Sabtu yang hening, seramai 40 orang anggota Pengakap Kanak-kanak Sekolah Kebangsaan Seri Indah telah menyertai perkhemahan tahunan di Hutan Lipur Lentang. Udara pagi yang nyaman bertiup lembut menyapa pipi tatkala kami melangkah turun dari bas. Hati kami berkobar-kobar bagai sang kancil yang cergas untuk menimba ilmu ikhtiar hidup di rimba yang menghijau ini.",
-            markah: 20,
-            ulasan: "Aras Cemerlang: Kosa kata puitis ('hening', 'berkobar-kobar') serta gambaran latar suasana yang memikat."
+            markah: 20
           },
           {
             teks: "Pada hari Sabtu lepas, sekolah kami telah mengadakan perkhemahan pengakap di Hutan Lipur Lentang. Kami menaiki bas ke sana pada waktu pagi. Apabila sampai, kami berasa sangat gembira dan tidak sabar untuk menjalankan aktiviti perkhemahan yang dirancang oleh cikgu.",
-            markah: 14,
-            ulasan: "Aras Sederhana: Ayat gramatis tetapi kosa kata biasa tanpa perincian latar yang mendalam."
+            markah: 14
           },
           {
             teks: "Saya dan kawan-kawan pergi berkhemah di hutan. Kami naik bas ramai-ramai. Tempat itu sangat sejuk dan ada banyak pokok tinggi. Kami bawa banyak barang makanan dan beg pakaian yang berat.",
-            markah: 8,
-            ulasan: "Aras Lemah: Ayat terlalu pendek, tiada penanda wacana, dan gaya bahasa kurang matang bagi murid Tahun 6."
+            markah: 8
           }
         ]
       },
       {
         bahagian: "Isi 1 (Mendirikan Khemah)",
         situasi: "Mendirikan Khemah Bersama Patrol",
-        huraian: "Setiap kumpulan perlu segera mendirikan tempat perlindungan sebelum hari petang.",
+        huraian: "Setiap patrol bekerjasama membina khemah sebelum menjelang petang.",
         pilihan: [
           {
             teks: "Setibanya di tapak perkhemahan, kami segera membahagikan tugas tanpa membuang masa. Bak kata peribahasa, 'berat sama dipikul, ringan sama dijinjing', kami bekerjasama bagai aur dengan tebing untuk memasang pancang dan menegakkan khemah. Walaupun titisan peluh mula membasahi dahi, namun kepenatan itu lebur apabila melihat deretan khemah berdiri megah dan tersusun rapi.",
-            markah: 20,
-            ulasan: "Aras Cemerlang: Peribahasa tepat konteks, ungkapan menarik ('lebur', 'berdiri megah'), dan jalinan idea kemas."
+            markah: 20
           },
           {
             teks: "Selepas itu, kami mula memasang khemah bersama-sama mengikut kumpulan masing-masing. Ada murid yang mencari kayu dan ada yang memegang tali. Kami tolong-menolong supaya khemah dapat disiapkan dengan cepat sebelum waktu petang.",
-            markah: 14,
-            ulasan: "Aras Sederhana: Ada nilai kerjasama tetapi struktur ayat masih bersahaja."
+            markah: 14
           },
           {
             teks: "Kemudian kami pasang khemah. Khemah itu susah mahu pasang sebab angin kuat. Cikgu tolong kami ketuk paku tanah. Akhirnya khemah kami siap juga dan kami letak beg dalam khemah.",
-            markah: 8,
-            ulasan: "Aras Lemah: Penggunaan perkataan berulang dan kosa kata yang terhad."
+            markah: 8
           }
         ]
       },
       {
         bahagian: "Isi 2 (Ikhtiar Hidup & Memasak)",
         situasi: "Memasak Rimba Menggunakan Ruas Buluh",
-        huraian: "Tengah hari tiba, murid perlu menggunakan sumber alam untuk memasak makanan.",
+        huraian: "Tengah hari tiba, murid perlu menggunakan sumber rimba untuk menyediakan juadah.",
         pilihan: [
           {
             teks: "Menjelang tengah hari, ujian ikhtiar hidup pun bermula. Di bawah bimbingan guru penasihat yang berdedikasi, kami diajar kaedah menyalakan api menggunakan ranting kayu kering dan memasak nasi di dalam ruas buluh. Bau aroma nasi yang harum semerbak menusuk kalbu tatkala api marak menjilat arang. Pengalaman ini benar-benar mematangkan kami tentang peri pentingnya menghargai makanan.",
-            markah: 20,
-            ulasan: "Aras Cemerlang: Pemerian pancaindera yang hidup ('menusuk kalbu', 'menjilat arang') memperlihatkan kematangan bahasa."
+            markah: 20
           },
           {
             teks: "Pada waktu tengah hari, kami belajar cara memasak tanpa menggunakan dapur gas. Kami menggunakan buluh untuk memasak nasi dan memanggang ikan di atas bara api. Makanan yang kami masak sungguh enak dan kami makan bersama-sama dengan penuh selera.",
-            markah: 14,
-            ulasan: "Aras Sederhana: Penceritaan jelas tetapi kurang pemerian rasa dan suasana."
+            markah: 14
           },
           {
             teks: "Waktu tengah hari kami lapar. Jadi cikgu suruh kami masak guna api kayu. Asap sangat banyak sampai mata saya pedih. Nasi kami agak hangus tetapi kami makan juga sebab lapar.",
-            markah: 8,
-            ulasan: "Aras Lemah: Gaya bahasa tidak formal dan kurang menyentuh nilai pembelajaran ikhtiar hidup."
+            markah: 8
           }
         ]
       },
       {
         bahagian: "Isi 3 (Malam Kebudayaan)",
         situasi: "Malam Kebudayaan & Semangat Ukhuwah",
-        huraian: "Malam rimba disinari cahaya api unggun dan persembahan para murid.",
+        huraian: "Malam rimba disinari cahaya api unggun dan persembahan sketsa.",
         pilihan: [
           {
             teks: "Tirai malam disingkap dengan acara yang paling dinanti-nantikan, iaitu Malam Kebudayaan di sekeliling unggun api yang menjulang tinggi. Suasana hening bertukar ceria dan gamat dengan gelak tawa penonton apabila setiap patrol mempersembahkan sketsa dan nyanyian patriotik. Aktiviti ini bukan sahaja mencungkil bakat terpendam, malahan menyemarakkan lagi tali silaturahim serta ukhuwah antara kami.",
-            markah: 20,
-            ulasan: "Aras Cemerlang: Permulaan puitis ('Tirai malam disingkap'), kosa kata matang ('gamat', 'ukhuwah', 'mencungkil bakat')."
+            markah: 20
           },
           {
             teks: "Pada waktu malam, kami mengadakan persembahan unggun api. Setiap kumpulan perlu membuat persembahan seperti menyanyi atau berlakon di hadapan semua orang. Suasana malam itu sangat meriah kerana semua orang bertepuk tangan dan berseronok.",
-            markah: 14,
-            ulasan: "Aras Sederhana: Penyampaian isi cukup baik tetapi nada penceritaan agak mendatar."
+            markah: 14
           },
           {
             teks: "Bila malam tiba kami buat unggun api. Kami duduk keliling api dan nyanyi lagu pengakap. Ada kawan saya buat lawak kelakar. Lepas itu cikgu suruh kami semua masuk tidur sebab sudah mengantuk.",
-            markah: 8,
-            ulasan: "Aras Lemah: Menggunakan dialek lisan yang kurang sesuai untuk penulisan rasmi."
+            markah: 8
           }
         ]
       },
@@ -254,18 +236,15 @@
         pilihan: [
           {
             teks: "Keesokan harinya, sebelum berangkat pulang, kami memastikan tapak perkhemahan dibersihkan tanpa meninggalkan secebis sampah pun agar keindahan alam sekitar terus terpelihara. Sesungguhnya, ekspedisi tiga hari dua malam ini meninggalkan nostalgia manis yang terpahat kukuh dalam sanubari. Perkhemahan ini telah mendidik kami menjadi insan yang lebih berdikari, berdisiplin, dan berdaya saing.",
-            markah: 20,
-            ulasan: "Aras Cemerlang: Rumusan berbobot dengan penerapan nilai pemeliharaan alam sekitar dan sahsiah diri."
+            markah: 20
           },
           {
             teks: "Sebelum pulang, kami membersihkan kawasan perkhemahan bersama-sama. Kami mengutip sampah dan melipat khemah dengan kemas. Pengalaman perkhemahan ini sangat berfaedah dan saya berharap agar dapat menyertai aktiviti seperti ini lagi pada masa hadapan.",
-            markah: 14,
-            ulasan: "Aras Sederhana: Menepati format penutup tetapi boleh digilap kosa katanya."
+            markah: 14
           },
           {
             teks: "Akhir sekali, kami pun kemas beg dan sapu sampah. Kami naik bas balik ke sekolah. Ibu bapa sudah tunggu kami di sekolah. Saya rasa penat tetapi seronok.",
-            markah: 8,
-            ulasan: "Aras Lemah: Penutup tergesa-gesa tanpa rumusan nilai bermanfaat."
+            markah: 8
           }
         ]
       }
@@ -297,6 +276,7 @@
       document.getElementById('huraianSituasi').innerText = data.huraian;
       document.getElementById('barKemajuan').style.width = `${((indeksBabak + 1) / dataBabakTahun6.length) * 100}%`;
 
+      // Rawakkan pilihan jawapan secara adil
       const pilihanRawak = [...data.pilihan].sort(() => Math.random() - 0.5);
 
       const kotak = document.getElementById('kotakPilihan');
@@ -362,45 +342,23 @@
 
       document.getElementById('paparanGred').innerText = gred;
       document.getElementById('paparanTahap').innerText = tahap;
-
-      const kotakUlasan = document.getElementById('senaraiUlasan');
-      kotakUlasan.innerHTML = "";
-      pilihanMurid.forEach((pil, idx) => {
-        const div = document.createElement('div');
-        div.className = "p-3 rounded-lg bg-slate-950/60 border border-slate-800";
-        div.innerHTML = `
-          <div class="flex items-center justify-between mb-1">
-            <span class="font-bold text-emerald-400">Babak ${idx + 1}: ${dataBabakTahun6[idx].bahagian}</span>
-            <span class="text-[11px] text-slate-400 font-mono-code">${pil.markah} / 20 markah</span>
-          </div>
-          <p class="text-slate-300 text-xs">${pil.ulasan}</p>
-        `;
-        kotakUlasan.appendChild(div);
-      });
     }
 
-    async function hantarDataKeDrive() {
-      const btn = document.getElementById('btnHantarDrive');
+    // Fungsi Utama: Hantar Data Teks untuk Dijana Sebagai PDF dalam Drive Guru
+    async function hantarPDFKeDrive() {
+      const btn = document.getElementById('btnHantarPDF');
       const box = document.getElementById('kotakStatusHantar');
-
       const gred = document.getElementById('paparanGred').innerText;
 
-      let ulasanHtmlStr = "";
-      pilihanMurid.forEach((p, idx) => {
-        ulasanHtmlStr += `<p style="margin: 4px 0;"><strong>${dataBabakTahun6[idx].bahagian} (${p.markah}/20):</strong> ${p.ulasan}</p>`;
-      });
+      // Cantumkan perenggan menjadi karangan lengkap
+      const karanganLengkap = pilihanMurid.map(p => p.teks).join("\n\n");
 
       const payload = {
         nama: infoMurid.nama,
         kelas: infoMurid.kelas,
         markah: markahTerkumpul,
         gred: gred,
-        perenggan1: pilihanMurid[0] ? pilihanMurid[0].teks : "",
-        perenggan2: pilihanMurid[1] ? pilihanMurid[1].teks : "",
-        perenggan3: pilihanMurid[2] ? pilihanMurid[2].teks : "",
-        perenggan4: pilihanMurid[3] ? pilihanMurid[3].teks : "",
-        perenggan5: pilihanMurid[4] ? pilihanMurid[4].teks : "",
-        ulasanHtml: ulasanHtmlStr
+        karangan: karanganLengkap
       };
 
       btn.disabled = true;
@@ -418,8 +376,8 @@
         });
 
         box.className = "p-3.5 rounded-xl text-xs text-center font-semibold bg-emerald-500/10 text-emerald-300 border border-emerald-500/20";
-        box.innerHTML = `✅ Selesai! Fail PDF laporan karangan telah berjaya disimpan ke dalam folder Google Drive guru.`;
-        btn.innerHTML = `<span>✅ PDF Telah Dihantar</span>`;
+        box.innerHTML = `✅ Selesai! Lembaran PDF jawapan dan markah telah berjaya dijana dan disimpan ke dalam folder Google Drive guru.`;
+        btn.innerHTML = `<span>✅ Fail PDF Berjaya Dihantar</span>`;
       } catch (err) {
         console.error(err);
         box.className = "p-3.5 rounded-xl text-xs text-center font-semibold bg-rose-500/10 text-rose-300 border border-rose-500/20";
@@ -443,8 +401,8 @@
       document.getElementById('screenPenamat').classList.add('hidden');
       document.getElementById('screenPermainan').classList.remove('hidden');
       document.getElementById('kotakStatusHantar').classList.add('hidden');
-      document.getElementById('btnHantarDrive').disabled = false;
-      document.getElementById('btnHantarDrive').innerHTML = `<span>📄 Jana & Hantar Fail PDF ke Google Drive Guru</span>`;
+      document.getElementById('btnHantarPDF').disabled = false;
+      document.getElementById('btnHantarPDF').innerHTML = `<span>📄 Hantar Jawapan & Markah (PDF) ke Drive Guru</span>`;
       kemaskiniKertasDraf();
       paparBabak();
     }
